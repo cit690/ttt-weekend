@@ -1,4 +1,14 @@
 /*-------------------------------- Constants --------------------------------*/
+const players = {
+  '1': {
+    name: '',
+    score: 0
+  },
+  '-1': {
+    name: '',
+    score: 0
+  }
+};
 
 const winningCombos = [
   {combo1: [sq0, sq1, sq2]},
@@ -20,7 +30,6 @@ let winner
 
 /*------------------------ Cached Element References ------------------------*/
 const allSquare = Array.from(document.querySelectorAll('.square'))
-console.log(allSquare)
 
 const h2Message = document.getElementById('message')
 
@@ -28,7 +37,7 @@ const resetBtn = document.getElementById('reset')
 
 
 /*----------------------------- Event Listeners -----------------------------*/
-// allSquare.addEventListener('click', handleClick)
+document.querySelector('.square').addEventListener('click', handleClick)
 
 
 /*-------------------------------- Functions --------------------------------*/
@@ -40,6 +49,7 @@ function init(){
   resetBtn.setAttribute("hidden", true)
   playerX = 1
   playerO = -1
+  turn = 1
   square = []
   isWinner = null
   h2Message = 
@@ -58,14 +68,14 @@ function handleClick(evt){
 
 function render(){
 // 3.3.1) Loop over the board array (which represents the squares on the page), and for each iteration:
-for(let i = 0; i < boardArray.length; i++){
-  if (boardArray[i] === 1){
-    square[i].textComment = "X"
-  } else if (boardArray[i] === -1){
-    square[i].textComment = "O"
-  } else {boardArray[i] === null}
-  square[i] = null
-}
+boardArray.forEach((square, idx)=>{
+  if (square === 1){
+    allSquare[i].textContent = 'X'
+  } else if (square === -1){
+    allSquare[i].textContent = 'O'
+  } else {square === null}
+    allSquare[i].textContent = ''
+})
 console.log(boardArray)
 
 
