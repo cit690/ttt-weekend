@@ -37,11 +37,16 @@ const resetBtn = document.getElementById('reset')
 
 
 /*----------------------------- Event Listeners -----------------------------*/
-// allSquare.addEventListener('click', function(evt){
-
-// })
+document.querySelector('div').addEventListener('click', handleClick)
 
 
+function handleClick(evt){
+  evt.getElementById.textContent = ""
+  console.log(evt)
+}
+
+ 
+// }
 /*-------------------------------- Functions --------------------------------*/
 
 
@@ -63,10 +68,8 @@ function init(){
 	  // 3.2.4) Render those state variables to the page by calling a render function.
     render()
 }
+init()
 
-function handleClick(evt){
-  console.log(evt)
-}
 
 
 function render(){
@@ -82,10 +85,13 @@ boardArray.forEach((square, i)=>{
     allSquare[i].textContent = ""}
 })
 
+
+
 if(isWinner !== null){
   h2Message.textContent = `Game still in process, ${1 || -1} goes next`
 } else if (isWinner = 'T'){
   h2Message.textContent = `It's a tie!`
+  h2Message.style.color = '#2ec4b6'
 } else {
   h2Message.textContent = `Congrats ${1 || -1}! You win!`
 }
