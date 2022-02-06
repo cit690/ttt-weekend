@@ -41,7 +41,7 @@ document.querySelector('div').addEventListener('click', handleClick)
 
 
 function handleClick(evt){
-  evt.getElementById.textContent = ""
+  evt.target.id = ""
   console.log(evt)
 }
 
@@ -96,4 +96,11 @@ if(isWinner !== null){
   h2Message.textContent = `Congrats ${1 || -1}! You win!`
 }
 
+}
+
+
+function getWinner(winner) {
+const winner = winningCombos.reduce(function(){
+
+})
 }
