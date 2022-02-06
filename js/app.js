@@ -37,7 +37,9 @@ const resetBtn = document.getElementById('reset')
 
 
 /*----------------------------- Event Listeners -----------------------------*/
-document.querySelector('.square').addEventListener('click', handleClick)
+// allSquare.addEventListener('click', function(evt){
+
+// })
 
 
 /*-------------------------------- Functions --------------------------------*/
@@ -45,14 +47,15 @@ document.querySelector('.square').addEventListener('click', handleClick)
 
 function init(){
   
-  boardArray = [null, null, null, null, null, null, null, null, null,]
+  boardArray = [null, null, null, null, null, null, null, null, null]
   resetBtn.setAttribute("hidden", true)
   playerX = 1
   playerO = -1
   turn = 1
   square = []
   isWinner = null
-  h2Message = 
+  isTie = 'T'
+  h2Message.textContent = ""
 
 	    // This represents that there is no winner or tie yet. 
 	    // The winner variable will hold the player value (1 or -1) if there's a winner. 
@@ -68,35 +71,23 @@ function handleClick(evt){
 
 function render(){
 // 3.3.1) Loop over the board array (which represents the squares on the page), and for each iteration:
-boardArray.forEach((square, idx)=>{
+boardArray.forEach((square, i)=>{
   if (square === 1){
-    allSquare[i].textContent = 'X'
+    allSquare[i].textContent = "X"
+    allSquare[i].style.color = 'yellow'
   } else if (square === -1){
-    allSquare[i].textContent = 'O'
-  } else {square === null}
-    allSquare[i].textContent = ''
+    allSquare[i].textContent = "O"
+    allSquare[i].style.color = 'purple'
+  } else {square === null
+    allSquare[i].textContent = ""}
 })
-console.log(boardArray)
 
-
-
-// const squareIndex = squares.findIndex()
-
-//  allSquare.forEach(square => square.addEventListener('click', handleClick))
-
- 
-// ⭐️allSquare.addEventListener('click', function(evt){
-  // allSquare.forEach(function(square){
-  //   if (square === 1) {
-  //     square.innerHTML = 'X'
-  //   } else if (square === -1) {
-  //     square.innerHTML = 'O'
-  //   } else { square = null}
-
-  // })
-  // console.log(allSquare)
-
-// })⭐️
-
+if(isWinner !== null){
+  h2Message.textContent = `Game still in process, ${1 || -1} goes next`
+} else if (isWinner = 'T'){
+  h2Message.textContent = `It's a tie!`
+} else {
+  h2Message.textContent = `Congrats ${1 || -1}! You win!`
+}
 
 }
