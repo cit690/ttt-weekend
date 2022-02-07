@@ -15,6 +15,7 @@ const winningCombos = [
 	[0, 4, 8],
 	[2, 4, 6]
 ]
+console.log(winningCombos)
 // const winningCombos = [
 //   {combo1: [sq0, sq1, sq2]},
 //   {combo2: [sq0, sq4, sq8]},
@@ -59,6 +60,8 @@ function handleClick(evt){
     boardArray[sqIdx] = -1}
 
     turn = turn * -1
+
+    resetBtn.removeAttribute('hidden')
     render()
 
   }
@@ -124,12 +127,13 @@ function render(){
           console.log('x wins')
           h2Message.textContent = `X wins!`
         }else if (boardArray[a]+boardArray[b]+boardArray[c] === -3){
+          console.log('o wins')
           h2Message.textContent = `O wins!`
         } else{
           h2Message.textContent = `It's a tie!`
         }
       }
+      
       render()
-      init()
     }
       
