@@ -62,6 +62,9 @@ function handleClick(evt){
     render()
 
   }
+
+  resetBtn.addEventListener('click', init)
+  init()
 /*-------------------------------- Functions --------------------------------*/
 
 
@@ -73,7 +76,6 @@ function init(){
   turn = 1
   isWinner = null
   isTie = 'T'
-  console.log(isTie)
   h2Message.textContent = "Let's play!"
   
   // This represents that there is no winner or tie yet. 
@@ -113,10 +115,21 @@ function render(){
 
     
     function getWinner() {
-      // const winner = winningCombos.reduce(function(){
-        // })
-        
-          if (boardArray[winningCombos[0]]+boardArray[winningCombos[1]]+boardArray[winningCombos[2]] === 3){
-              h2Message.textContent === `X wins!`
-            }
-          }
+      for (let i = 0; i <winningCombos.length; i++){
+        const a = winningCombos[i][0]
+        const b = winningCombos[i][1]
+        const c = winningCombos[i][2]
+
+        if (boardArray[a]+boardArray[b]+boardArray[c] === 3){
+          console.log('x wins')
+          h2Message.textContent = `X wins!`
+        }else if (boardArray[a]+boardArray[b]+boardArray[c] === -3){
+          h2Message.textContent = `O wins!`
+        } else{
+          h2Message.textContent = `It's a tie!`
+        }
+      }
+      render()
+      init()
+    }
+      
