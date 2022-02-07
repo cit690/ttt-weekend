@@ -15,6 +15,10 @@ body {
   flex-direction: column;
 }
 
+h2{
+  color: #ff9f1c
+}
+
 section.board {
   color: white;
   display: grid;

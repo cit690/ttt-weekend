@@ -44,19 +44,23 @@ const resetBtn = document.getElementById('reset')
 
 
 /*----------------------------- Event Listeners -----------------------------*/
-document.querySelector('.square').addEventListener('click', handleClick)
+document.querySelector('.board').addEventListener('click', handleClick)
 
 
 function handleClick(evt){
   let sqIdx = parseInt(evt.target.id.replace('sq', ''))
-  if((boardArray[sqIdx]) === 1 || -1){
-    return
+    if(turn === 1){
+    boardArray[sqIdx] = 'X'
+    }
+    if (turn === -1){
+    boardArray[sqIdx] = 'O'
+    }
+    turn = turn * -1
+    render()
+  
   }
-  if (isWinner !== null) {
-    return
-  }
-  turn = turn * -1
-}
+    
+
 
  
 // }
@@ -73,7 +77,7 @@ function init(){
   console.log(isWinner)
   isTie = 'T'
   console.log(isTie)
-  h2Message.textContent = ""
+  h2Message.textContent = "Let's play!"
 
 	    // This represents that there is no winner or tie yet. 
 	    // The winner variable will hold the player value (1 or -1) if there's a winner. 
@@ -88,21 +92,23 @@ function render(){
 boardArray.forEach((square, i)=>{
   if (square === 1){
     allSquare[i].textContent = "X"
-    allSquare[i].style.color = 'yellow'
+    allSquare[i].style.color = '#2ec4b6'
   } else if (square === -1){
     allSquare[i].textContent = "O"
-    allSquare[i].style.color = 'purple'
+    allSquare[i].style.color = '#e71d36'
   } else { 
     allSquare[i].textContent = ""}
 })
 
 if(isWinner !== null){
-  h2Message.textContent = `Game still in process, ${turn === 1 ? 'X' : 'O'} goes next`
-} else if (isWinner = 'T'){
-  h2Message.textContent = `It's a tie!`
-  h2Message.style.color = '#2ec4b6'
-} else {
-  h2Message.textContent = `Congrats ${1 || -1}! You win!`
+  h2Message.textContent = `Game still in progress, ${turn === 1 ? 'X' : 'O'} goes next`
+} 
+// else if (isWinner = 'T'){
+//   h2Message.textContent = `It's a tie!`
+//   h2Message.style.color = '#ff9f1c'
+// }
+else {
+  h2Message.textContent = `Congrats ${turn === 1 ? 'X' : 'O'}! You win!`
 }
 
 // getWinner()
