@@ -15,18 +15,8 @@ const winningCombos = [
 	[0, 4, 8],
 	[2, 4, 6]
 ]
-console.log(winningCombos)
-// const winningCombos = [
-//   {combo1: [sq0, sq1, sq2]},
-//   {combo2: [sq0, sq4, sq8]},
-//   {combo3: [sq0, sq3, sq6]},
-//   {combo4: [sq1, sq4, sq7]},
-//   {combo5: [sq2, sq4, sq6]},
-//   {combo6: [sq2, sq5, sq8]},
-//   {combo7: [sq3, sq4, sq5]},
-//   {combo8: [sq6, sq7, sq8]}
-// ]
-// console.log(winningCombos)
+
+
 /*---------------------------- Variables (state) ----------------------------*/
 
 
@@ -36,7 +26,7 @@ let isWinner
 
 /*------------------------ Cached Element References ------------------------*/
 const allSquare = document.querySelectorAll('.square')
-console.log(allSquare)
+
 const h2Message = document.getElementById('message')
 
 
@@ -75,7 +65,6 @@ function handleClick(evt){
 function init(){
   
   boardArray = [null, null, null, null, null, null, null, null, null]
-  console.log(boardArray)
   resetBtn.setAttribute("hidden", true)
   turn = 1
   isWinner = null
@@ -87,7 +76,7 @@ function init(){
 init()
 
 function render(){
-  // 3.3.1) Loop over the board array (which represents the squares on the page), and for each iteration:
+  
   boardArray.forEach((square, i)=>{
     if (square === 1){
       allSquare[i].textContent = "X"
@@ -99,7 +88,7 @@ function render(){
     else { 
       allSquare[i].textContent = ""}
     })
-    //the code below is going to make updates to the message in getWinner
+
     if(isWinner === null){
       h2Message.textContent = `It's player ${turn === 1 ? 'X' : 'O'}'s turn!`
     } 
