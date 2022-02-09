@@ -53,7 +53,9 @@ function handleClick(evt){
   let sqIdx = parseInt(evt.target.id.replace('sq', ''))
     if (boardArray[sqIdx] !== null){
       return
-    }
+    } 
+  
+
     if(turn === 1){
     boardArray[sqIdx] = 1
     } else {
@@ -61,8 +63,7 @@ function handleClick(evt){
 
     turn = turn * -1
 
-    resetBtn.removeAttribute('hidden')
-    // render()
+    
     getWinner()
   }
 
@@ -81,10 +82,6 @@ function init(){
   isTie = 'T'
   h2Message.textContent = ""
   
-  // This represents that there is no winner or tie yet. 
-  // The winner variable will hold the player value (1 or -1) if there's a winner. 
-  // The winner will hold a 'T' if there's a tie.
-  // 3.2.4) Render those state variables to the page by calling a render function.
   render()
 }
 init()
@@ -98,24 +95,24 @@ function render(){
     } else if (square === -1){
       allSquare[i].textContent = "O"
       allSquare[i].style.color = '#e71d36'
-    } else { 
+    } 
+    else { 
       allSquare[i].textContent = ""}
     })
     //the code below is going to make updates to the message in getWinner
     if(isWinner === null){
-      h2Message.textContent = `${turn === 1 ? 'X' : 'O'}'s turn!`
+      h2Message.textContent = `It's player ${turn === 1 ? 'X' : 'O'}'s turn!`
     } 
     else if(isWinner === 'X' || isWinner === 'O'){
-      h2Message.textContent = `Congrats ${isWinner}! You win!`
-      // h2Message.textContent = `Congrats ${turn === 1 ? 'X' : 'O'}! You win!`
-
+      h2Message.textContent = `Congrats player ${isWinner}! You win!`
+      resetBtn.removeAttribute('hidden')
     }
-    // else if (isWinner === 'T' && turn === 0){
-    //   console.log('tie message from render function')
-    //     h2Message.textContent = `It's a tie!`
-    //   }
+    else if (isWinner === 'T'){
+      console.log('tie message from render function')
+        h2Message.textContent = `It's a tie!`
+        resetBtn.removeAttribute('hidden')
+      }
       
-      //  getWinner()
     }
     
 
@@ -127,21 +124,13 @@ function render(){
         const c = winningCombos[i][2]
 
         if (boardArray[a]+boardArray[b]+boardArray[c] === 3){
-          console.log('x wins')
-          // h2Message.textContent = `X wins!`
           isWinner = 'X'
         }else if (boardArray[a]+boardArray[b]+boardArray[c] === -3){
-          console.log('o wins')
           isWinner = 'O'
-          // h2Message.textContent = `O wins!`
         }
-        // else {
-        //   console.log(`it's a tie`)
-        //   turn = 0
-        //   isWinner = 'T'
-        // }
-      
-      
-      render()
-    }
+        else if (!boardArray.includes(null)) {
+          isWinner = 'T'
+         } 
+        }
+        render()
   }
