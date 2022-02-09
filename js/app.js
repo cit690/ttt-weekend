@@ -62,8 +62,8 @@ function handleClick(evt){
     turn = turn * -1
 
     resetBtn.removeAttribute('hidden')
-    render()
-
+    // render()
+    getWinner()
   }
 
   resetBtn.addEventListener('click', init)
@@ -79,7 +79,7 @@ function init(){
   turn = 1
   isWinner = null
   isTie = 'T'
-  h2Message.textContent = "Let's play!"
+  h2Message.textContent = ""
   
   // This represents that there is no winner or tie yet. 
   // The winner variable will hold the player value (1 or -1) if there's a winner. 
@@ -101,18 +101,21 @@ function render(){
     } else { 
       allSquare[i].textContent = ""}
     })
-    
-    if(isWinner !== null){
-      h2Message.textContent = `Game still in progress, ${turn === 1 ? 'X' : 'O'} goes next`
+    //the code below is going to make updates to the message in getWinner
+    if(isWinner === null){
+      h2Message.textContent = `${turn === 1 ? 'X' : 'O'}'s turn!`
     } 
-    else if (isWinner = isTie){
-        h2Message.textContent = `It's a tie!`
-      }
-      else {
-        h2Message.textContent = `Congrats ${turn === 1 ? 'X' : 'O'}! You win!`
-      }
+    else if(isWinner === 'X' || isWinner === 'O'){
+      h2Message.textContent = `Congrats ${isWinner}! You win!`
+      // h2Message.textContent = `Congrats ${turn === 1 ? 'X' : 'O'}! You win!`
+
+    }
+    // else if (isWinner === 'T' && turn === 0){
+    //   console.log('tie message from render function')
+    //     h2Message.textContent = `It's a tie!`
+    //   }
       
-      // getWinner()
+      //  getWinner()
     }
     
 
@@ -125,15 +128,20 @@ function render(){
 
         if (boardArray[a]+boardArray[b]+boardArray[c] === 3){
           console.log('x wins')
-          h2Message.textContent = `X wins!`
+          // h2Message.textContent = `X wins!`
+          isWinner = 'X'
         }else if (boardArray[a]+boardArray[b]+boardArray[c] === -3){
           console.log('o wins')
-          h2Message.textContent = `O wins!`
-        } else{
-          h2Message.textContent = `It's a tie!`
+          isWinner = 'O'
+          // h2Message.textContent = `O wins!`
         }
-      }
+        // else {
+        //   console.log(`it's a tie`)
+        //   turn = 0
+        //   isWinner = 'T'
+        // }
+      
       
       render()
     }
-      
+  }
